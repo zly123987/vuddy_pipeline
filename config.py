@@ -1,0 +1,17 @@
+input_patch = '/root/vuddy_data/data_patch_new_0529/'
+input_git_repo = '/mnt/sdc2/repo/'
+temp_path = 'temp_path/'
+opt_jar = '/root/MVP/vuddy/FuncParser-opt/FuncParser-opt.jar'
+db_host = "localhost"
+db_port = 27018
+db_name = "vuddy"
+db_vul_collection = "vul_feature_test_new1"
+db_patch_collection = "patch_feature_test_new1"
+db_user = "root"
+db_password = "example"
+db_auth = "admin"
+CVE_info = "tcpdump_CVE-2017-13043_d515b4b4a300479cdf1a6e0d1bb95bc1f9fee514"
+CVE_repo_id = '3750'
+function_char_length = 50
+CVE_id_library_id = '/root/c_lib_patch_repo_path0530.csv'
+decode_error = '/root/decode_error_patch_path.csv'

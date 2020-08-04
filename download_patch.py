@@ -31,7 +31,6 @@ session = Session(engine)
 Base.prepare(engine, reflect=True)
 # Test connection
 print('Test Connection...')
-print(Base.metadata.tables.keys())
 
 # Mapped classes are now created with names by default
 # matching that of the table name.
@@ -42,11 +41,10 @@ sp = Base.classes['1_scantist_patch']
 sps = Base.classes['1_scantist_patchsource']
 # vulner_library= Base.classes['1_scantist_vulnerability_library']
 si = Base.classes.scantist_securityissue
-data = pd.read_csv('lib_csv_path.csv')
+data = pd.read_csv('lib_cve_path.csv')
 patch = []
-file_path_name = ''
 for i in range(len(data)):
-    print(i)
+    file_path_name = ''
     id_obj = (session
               .query(sps.patch_hash)
               .filter(sps.vulnerability_id == int(data['vulnerability_id'][i]))
@@ -81,7 +79,7 @@ for i in range(len(data)):
                     j = j + 1
                     patch[i]
                 except Exception as e:
-                    print(str(e))
+                    print(data[i], str(e))
     else:
         patch_table_obj = (session
                           .query(sp.raw)
@@ -101,11 +99,11 @@ for i in range(len(data)):
                     f.write(patch_table_list[j][0])
                     f.close()
                 except Exception as e:
-                    print(str(e))
+                    print(data[i], str(e))
     patch.append(file_path_name)
 if len(patch) == len(data):
     data['patch'] = patch
-    data.to_csv('csv_repo_patch.csv', 'w')
+    data.to_csv('cve_repo_patch.csv',index = False, header=True)
     print('Added patch paths to csv')
 else:
     print('lengths do not match')
